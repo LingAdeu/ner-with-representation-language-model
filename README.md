@@ -21,7 +21,7 @@ The finding as summarized on Table 1 suggests that the performance of XLM-R mode
 
 <span style='text-align:center'><b>Table 1</b>. Comparison between m-BERT and XLM-R models in terms of performance and efficiency.</span>
 
-$$\text{\delta}=\frac{(\text{XLMR-MBERT})}{\text{MBERT}}\times 100$$
+$$\Delta=\frac{\text{XLMR}-\text{MBERT}}{\text{MBERT}}\times 100$$
 
 In spite of lower in efficiency compared to m-BERT, XLM-R is the better long-term solution for production. While m-BERT is faster and cheaper to serve, the performance improvements of XLM-R provides better results (which are good for production-grade model). Equally important, XLM-R was pretrained on larger and more balanced multilingual corpus. This factor makes it better for crosslingual transfer and better solution to handle future multilingual expansion later. Even though XLM-R is potentially more expensive in its serving, scalability and generalization factors still outweigh the computational cost, particularly related to execution time.
 
