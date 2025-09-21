@@ -8,7 +8,7 @@ This repository stores my project code for a bilingual named entity recognition 
 The finding as summarized on Table 1 suggests that the performance of XLM-R model is more effective than m-BERT model in terms of precision, recall, F1, and accuracy despite minor difference (~1%). While XLM-R has higher performance in effectiveness metrics, this model is far less efficient than BERT. The evaluation runtime of XLM-R is 64.69% longer than m-BERT, indicating it needs longer time to evaluate the same number of samples. In addition to this, XLM-R processes nearly 40% fewer samples and steps per second compared to m-BERT. At glance, the smaller difference in XLM-R performance cannot justify the higher inefficiency but here is where the scalability factor, especially multilingual expansion which is normal in industries, comes up.
 
 | metric                  | mBERT         | XLM-R        | difference | candidate |
-|--------------------------|---------------|--------------|----------------|-----------|
+|:-------------------------|--------------:|-------------:|---------------:|:----------|
 | eval_loss                | 0.050518      | <span style='background-color:green; color:white'>0.037623</span>     | -25.5%     | XLM-R |
 | eval_precision           | 0.907649      | <span style='background-color:green; color:white'>0.917869</span>     | +1.1%      | XLM-R |
 | eval_recall              | 0.908744      | <span style='background-color:green; color:white'>0.921005</span>     | +1.3%      | XLM-R |
