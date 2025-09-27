@@ -3,18 +3,9 @@
 # **Multilingual and Crosslingual Model Evaluation on Bilingual Named Entity Recognition**
 
 ## Description
-This repository stores my project code for a bilingual (English and Dutch, see Table 1) named entity recognition task. The goal of this project is to find out best performing model with minor trade-offs in training and inference speed which are equally critical to the effectiveness. Due to the bilingual nature of the NLP task, Multilingual BERT (m-BERT) and Crosslingual Language Model RoBERTa (XLM-R) which use different pre-training strategies (representation learning for multiple languages in parallel vs crosslingual representation learning) and tokenization algorithms (namely WordPiece vs SentencePiece with byte-pair encoding). To note, both pre-trained models have different number of parameters in which XLM-R (277M) has 1.5x larger than m-BERT (117M). While a bigger model size usually performs better, it remains unknown whether the better performance worths the training and inference speeds which are equally critical in a production environment for computational efficiency.
+This repository stores my project code for a bilingual named entity recognition (NER) task. The goal of this project is to find out best performing model with minor trade-offs in training and inference speed which are equally critical to the effectiveness. Due to the bilingual nature of the NLP task, Multilingual BERT (m-BERT) and Crosslingual Language Model RoBERTa (XLM-R) which use different pre-training strategies (representation learning for multiple languages in parallel vs crosslingual representation learning) and tokenization algorithms (namely WordPiece vs SentencePiece with byte-pair encoding). To note, both pre-trained models have different number of parameters in which XLM-R (277M) has 1.5x larger than m-BERT (117M). While a bigger model size usually performs better, it remains unknown whether the better performance worths the training and inference speeds which are equally critical in a production environment for computational efficiency.
 
-| tokens                                                                                                                                               | ner_tags                                                        | lang |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|------|
-| [He, started, in, junior, formula, cars, with, the, highlight, winning, the, Austria, Formula, 3, Cup, in, 1992, .]                                 | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 8, 8, 8, 0, 0, 0]           | en   |
-| [towards, York, .]                                                                                                                                   | [0, 5, 0]                                                       | en   |
-| [De, drachme, ,, maar, vooral, de, tetradrachme, ,, het, vierdrachmestuk, ,, werd, massaal, gebruikt, voor, de, handel, in, het, Middellandse, Zeegebied, .] | [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 0] | nl   |
-| [To, the, secessionists, the, Republican, intent, was, clear, :, to, contain, slavery, within, its, present, bounds, and, ,, eventually, ,, to, eliminate, it, entirely, .] | [0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] | en   |
-
-<span style='text-align:center'><b>Table 1</b>. Bilingual dataset used to train m-BERT and XLM RoBERTa. Subsetted from [Kaggle](https://www.kaggle.com/datasets/thedevastator/multilingual-ner-dataset#).</span>
-
-The finding suggests that the performance of XLM-R model is more effective than m-BERT model in terms of precision, recall, F1, and accuracy despite minor difference (~1%, see Table 2). While XLM-R has higher performance in effectiveness metrics, this model is far less efficient than BERT. The evaluation runtime of XLM-R is 64.69% longer than m-BERT, indicating it needs longer time to evaluate the same number of samples. In addition to this, XLM-R processes nearly 40% fewer samples and steps per second compared to m-BERT. At glance, the smaller difference in XLM-R performance cannot justify the higher inefficiency but here is where the scalability factor, especially multilingual expansion which is normal in industries, comes up.
+The finding as summarized on Table 1 suggests that the performance of XLM-R model is more effective than m-BERT model in terms of precision, recall, F1, and accuracy despite minor difference (~1%). While XLM-R has higher performance in effectiveness metrics, this model is far less efficient than BERT. The evaluation runtime of XLM-R is 64.69% longer than m-BERT, indicating it needs longer time to evaluate the same number of samples. In addition to this, XLM-R processes nearly 40% fewer samples and steps per second compared to m-BERT. At glance, the smaller difference in XLM-R performance cannot justify the higher inefficiency but here is where the scalability factor, especially multilingual expansion which is normal in industries, comes up.
 
 | metric                  | mBERT         | XLM-R        | difference | candidate |
 |:-------------------------|--------------:|-------------:|---------------:|:----------|
@@ -28,13 +19,14 @@ The finding suggests that the performance of XLM-R model is more effective than 
 | eval_steps_per_second    | <span style='background-color:green; color:white'>16.881000</span> | 10.253000    | -39.3%     | mBERT |
 | epoch                    | 3.000000      | 3.000000     | 0%             | – |
 
-<span style='text-align:center'><b>Table 2</b>. Comparison between m-BERT and XLM-R models in terms of performance and efficiency.</span>
+<span style='text-align:center'><b>Table 1</b>. Comparison between m-BERT and XLM-R models in terms of performance and efficiency.</span>
 
 $$\Delta=\frac{\text{XLMR}-\text{MBERT}}{\text{MBERT}}\times 100$$
 
 In spite of lower in efficiency compared to m-BERT, XLM-R is the better long-term solution for production. While m-BERT is faster and cheaper to serve, the performance improvements of XLM-R provides better results (which are good for production-grade model). Equally important, XLM-R was pretrained on larger and more balanced multilingual corpus. This factor makes it better for crosslingual transfer and better solution to handle future multilingual expansion later. Even though XLM-R is potentially more expensive in its serving, scalability and generalization factors still outweigh the computational cost, particularly related to execution time.
 
 The computational cost, if not possible to keep it minimum with the optimization on the ML side, can still be done by maximizing on the deployment infrastructure such as batching and managing cold starts is still possible. Putting a reasonable amount of data into a single request (or batch) will be more cost-efficient than processing a single data at a time sequentially since GPUs can perform the same operation on multiple data points simultaneously. The parallel processing reduces the billable execution time for on the GPUs.
+
 
 >[!important]
 > To read how the experiment was carried out, use this hyperlink: 
