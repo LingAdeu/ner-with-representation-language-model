@@ -2,6 +2,8 @@
 
 # **Multilingual and Crosslingual Model Evaluation on Bilingual Named Entity Recognition**
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ZeKSWbM1zbFjSTrOTAEr8SIXipfpKm23#scrollTo=FXB-7ILRg7rQ)
+
 ## Description
 This repository stores my project code for a bilingual named entity recognition (NER) task. The goal of this project is to find out best performing model with minor trade-offs in training and inference speed which are equally critical to the effectiveness. Due to the bilingual nature of the NLP task, Multilingual BERT (m-BERT) and Crosslingual Language Model RoBERTa (XLM-R) which use different pre-training strategies (representation learning for multiple languages in parallel vs crosslingual representation learning) and tokenization algorithms (namely WordPiece vs SentencePiece with byte-pair encoding). To note, both pre-trained models have different number of parameters in which XLM-R (277M) has 1.5x larger than m-BERT (117M). While a bigger model size usually performs better, it remains unknown whether the better performance worths the training and inference speeds which are equally critical in a production environment for computational efficiency.
 
@@ -26,11 +28,6 @@ $$\Delta=\frac{\text{XLMR}-\text{MBERT}}{\text{MBERT}}\times 100$$
 In spite of lower in efficiency compared to m-BERT, XLM-R is the better long-term solution for production. While m-BERT is faster and cheaper to serve, the performance improvements of XLM-R provides better results (which are good for production-grade model). Equally important, XLM-R was pretrained on larger and more balanced multilingual corpus. This factor makes it better for crosslingual transfer and better solution to handle future multilingual expansion later. Even though XLM-R is potentially more expensive in its serving, scalability and generalization factors still outweigh the computational cost, particularly related to execution time.
 
 The computational cost, if not possible to keep it minimum with the optimization on the ML side, can still be done by maximizing on the deployment infrastructure such as batching and managing cold starts is still possible. Putting a reasonable amount of data into a single request (or batch) will be more cost-efficient than processing a single data at a time sequentially since GPUs can perform the same operation on multiple data points simultaneously. The parallel processing reduces the billable execution time for on the GPUs.
-
-
->[!important]
-> To read how the experiment was carried out, use this hyperlink: 
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ZeKSWbM1zbFjSTrOTAEr8SIXipfpKm23#scrollTo=FXB-7ILRg7rQ)
 
 ## Feedback
 If there are any questions or suggestions for improvements, feel free to contact me here:
