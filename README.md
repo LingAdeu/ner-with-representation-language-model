@@ -29,6 +29,9 @@ In spite of lower in efficiency compared to m-BERT, XLM-R is the better long-ter
 
 The computational cost, if not possible to keep it minimum with the optimization on the ML side, can still be done by maximizing on the deployment infrastructure such as batching and managing cold starts is still possible. Putting a reasonable amount of data into a single request (or batch) will be more cost-efficient than processing a single data at a time sequentially since GPUs can perform the same operation on multiple data points simultaneously. The parallel processing reduces the billable execution time for on the GPUs.
 
+## Next Step
+I am now preparing a data annotation tool, covering named entity recognition and keyphrase extraction using Streamlit. This addition expands this project to not only include the data scientist part but also the data annotation part. Practically, data scientist requires a specific format while relying annotation consistency may cause troubles in the dataset preprocessing. This tool bridges the data scientist's need and data annotator's ease.
+
 ## Feedback
 If there are any questions or suggestions for improvements, feel free to contact me here:
 
