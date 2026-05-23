@@ -1,5 +1,14 @@
+# folders
 .venv/
 data/
+archive/
+
+# dataset
 nkpe_eval_2026_05_04.parquet
+
+# caches
 autosave_data.parquet
 autosave_meta.json
+
+# misc
+README.html
