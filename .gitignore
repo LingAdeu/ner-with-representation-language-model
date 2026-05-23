@@ -1,0 +1,5 @@
+.venv/
+data/
+nkpe_eval_2026_05_04.parquet
+autosave_data.parquet
+autosave_meta.json
