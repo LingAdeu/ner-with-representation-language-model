@@ -32,8 +32,8 @@ The computational cost, if not possible to keep it minimum with the optimization
 ## Next Step
 I am now preparing a data annotation tool, covering named entity recognition and keyphrase extraction using Streamlit. This addition expands this project to not only include the data scientist part but also the data annotation part. Practically, data scientist requires a specific format while relying annotation consistency may cause troubles in the dataset preprocessing. This tool bridges the data scientist's need and data annotator's ease.
 
-> [!info]
-> The annotation tool can be accessed [here](https://ner-keyphrase-annotation.streamlit.app) but to note, this tool is under development. 
+> [!important] 
+> The annotation tool can be accessed [here](https://span-extraction-annotation-tool.streamlit.app) but to note, this tool is under development. 
 
 ## Feedback
 If there are any questions or suggestions for improvements, feel free to contact me here:
